@@ -1,0 +1,42 @@
+database:
+  # Seetings for the DB-Connector. To store values and results.
+  type: !!str "MariaDB"
+    # Possible: MariaDB, PostgreSQL
+  host: !!str "mariadb"
+  port: !!int 3306
+  user: !!str "refseeker"
+  password: !!str "refseeker"
+  database_name: !!str "refseeker"
+primarykeys:
+  # Seetings for the primarykeys.
+  max_UAC_attibutes: !!int 4 
+    # Maximum attributs for a unique column combination
+  max_value_length: !!int 16 
+    # Maximum value length for a primarykey value. Gives a penalpenality if the value is longer.
+  name_suffix: 
+    # List of name suffixes for attributnames of pimarykeys
+    - !!str "id"
+    - !!str "key"
+    - !!str "nr"
+    - !!str "no"
+    - !!str "pk"
+    - !!str "num"
+    - !!str "code"
+inclusion_dependencies:
+  # Seetings for the inclusion dependencies.
+  speed_mode: !!int 0
+    # Must be between 0 and 10. If greeter than 0 it uses heuristic methode to find N-ary INDs. The maxmimum spped is 10.
+  find_max_ind: !!bool true
+    # Can be "true" or "false", if true the prototyp will search for all maximal inlusion dependencies
+metrics:
+  # Metrics to find primarykeys and references.
+  pk_metric: !!str "pk_score_hopf"
+    # Possible: pk_score_hopf, pk_score_iris
+    # Metric to find the primarykeys.
+  fk_metric: !!str "hopf_probability"
+    # Possible: hopf_probability, iris_probability, hybrid_only_name_probability, hybrid_probability
+    # Metric to find the references.
+dataexport:
+  # Settings for the dataexport
+  filepath: !!str "export.json"
+    # Filename and path

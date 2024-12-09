@@ -1,0 +1,12 @@
+venv
+extractor/*
+.vscode/*
+*/__pycache__/*
+results/*
+
+~*
+*.md
+*.json
+Dockerfile
+.gitignore
+.dockerignore

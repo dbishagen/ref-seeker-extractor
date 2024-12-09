@@ -1,0 +1,9 @@
+venv
+.vscode
+__pycache__
+*/diagramms_for_thesis/*
+ref-seeker-extractor/results/*
+!ref-seeker-extractor/results/.gitkeep
+ref-seeker-extractor-client/schema.json
+~*
+

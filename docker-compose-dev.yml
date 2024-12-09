@@ -1,0 +1,61 @@
+
+services:
+  ref-seeker-extractor:
+    image: registry.gitlab.com/dbishagen/ref-seeker-extractor/ref-seeker-extractor:1.0.0
+    #build: 
+    #  context: ./src/
+    #  dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+       - type: bind
+         source: ./ref-seeker-extractor
+         target: /code
+    command: uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+    networks:
+      - schema-extraction-network
+    depends_on:
+      - mariadb
+
+
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: refseeker
+      MYSQL_DATABASE: refseeker
+      MYSQL_USER: refseeker
+      MYSQL_PASSWORD: refseeker
+    volumes:
+      - type: volume
+        source: mariadb-data
+        target: /var/lib/mysql
+    ports:
+      - "8002:3306"
+    networks:
+      - schema-extraction-network
+
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8003:80
+    environment:
+      #APACHE_PORT: 8003
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      MYSQL_USER: refseeker
+      MYSQL_PASSWORD: refseeker
+    networks:
+      - schema-extraction-network
+
+
+
+
+volumes:
+  mariadb-data:
+
+
+networks:
+  schema-extraction-network:
+    name: schema-extraction-network
+    driver: bridge

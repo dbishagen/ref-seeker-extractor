@@ -1,0 +1,15 @@
+cassandra_driver==3.29.2
+dictances==1.5.3
+fastapi==0.115.5
+mariadb==1.1.11
+neo4j==5.27.0
+nltk==3.9.1
+pandas==2.2.3
+psycopg2==2.9.10
+pydantic==2.10.2
+pymongo==4.10.1
+PyYAML==6.0.2
+RapidFuzz==3.10.1
+scipy==1.14.1
+uvicorn==0.32.1
+
