@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "uri": "mongodb://mongodb:27017/unibench",
+      "user": "",
+      "password": ""
+    },
+    {
+      "uri": "postgresql://postgres:5432/unibench",
+      "user": "postgres",
+      "password": "root"
+    },
+    {
+      "uri": "neo4j://neo4j:7687",
+      "user": "neo4j",
+      "password": "neo4jpassword"
+    }
+  ]
+}

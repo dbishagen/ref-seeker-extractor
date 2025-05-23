@@ -1,7 +1,8 @@
 
 services:
   ref-seeker-extractor:
-    image: registry.gitlab.com/dbishagen/ref-seeker-extractor/ref-seeker-extractor:1.0.0
+    #image: registry.gitlab.com/dbishagen/ref-seeker-extractor/ref-seeker-extractor:1.0.0
+    image: ghcr.io/dbishagen/ref-seeker-extractor:1.0.0
     #build: 
     #  context: ./src/
     #  dockerfile: Dockerfile
@@ -34,18 +35,18 @@ services:
       - schema-extraction-network
 
 
-  phpmyadmin:
-    image: phpmyadmin
-    ports:
-      - 8003:8003
-    environment:
-      APACHE_PORT: 8003
-      PMA_HOST: mariadb
-      PMA_PORT: 3306
-      MYSQL_USER: refseeker
-      MYSQL_PASSWORD: refseeker
-    networks:
-      - schema-extraction-network
+  # phpmyadmin:
+  #   image: phpmyadmin
+  #   ports:
+  #     - 8003:8003
+  #   environment:
+  #     APACHE_PORT: 8003
+  #     PMA_HOST: mariadb
+  #     PMA_PORT: 3306
+  #     MYSQL_USER: refseeker
+  #     MYSQL_PASSWORD: refseeker
+  #   networks:
+  #     - schema-extraction-network
 
 
 

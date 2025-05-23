@@ -1,7 +1,8 @@
 services:
 
   neo4j:
-    image: registry.gitlab.com/dbishagen/unibench-ind-data-generator/neo4j:5.25.1-unibench-${DATA_SIZE:-0.0}
+    #image: registry.gitlab.com/dbishagen/unibench-ind-data-generator/neo4j:5.25.1-unibench-${DATA_SIZE:-0.0}
+    image: ghcr.io/dbishagen/neo4j:5.25.1-unibench-${DATA_SIZE:-0.0}
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -13,14 +14,16 @@ services:
       - schema-extraction-network
   
   mongodb:
-    image: registry.gitlab.com/dbishagen/unibench-ind-data-generator/mongo:8.0.0-rc11-jammy-unibench-${DATA_SIZE:-0.0}
+    #image: registry.gitlab.com/dbishagen/unibench-ind-data-generator/mongo:8.0.0-rc11-jammy-unibench-${DATA_SIZE:-0.0}
+    image: ghcr.io/dbishagen/mongo:8.0.0-rc11-jammy-unibench-${DATA_SIZE:-0.0}
     ports:
       - "27017:27017"
     networks:
       - schema-extraction-network
   
   postgres:
-    image: registry.gitlab.com/dbishagen/unibench-ind-data-generator/postgres:17.1-unibench-${DATA_SIZE:-0.0}
+    #image: registry.gitlab.com/dbishagen/unibench-ind-data-generator/postgres:17.1-unibench-${DATA_SIZE:-0.0}
+    image: ghcr.io/dbishagen/postgres:17.1-unibench-${DATA_SIZE:-0.0}
     ports:
       - "5432:5432"
     environment:

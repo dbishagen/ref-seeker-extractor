@@ -7,3 +7,5 @@ ref-seeker-extractor/results/*
 ref-seeker-extractor-client/schema.json
 ~*
 
+ref-seeker-extractor-client/out
+

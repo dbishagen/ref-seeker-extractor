@@ -12,7 +12,7 @@ This service extracts inclusion dependencies from different databases (polystore
 
 ## Quick Start
 
-The docker compose file with databases containing test data are already included (have a look at the [unibench-ind-data-generator](https://gitlab.com/dbishagen/unibench-ind-data-generator) project).
+The docker compose file with databases containing test data are already included (have a look at the [unibench-ind-data-generator](https://github.com/dbishagen/unibench-ind-data-generator) project).
 
 To start the services and databases with test data, run the following command:
 
@@ -23,34 +23,31 @@ DATA_SIZE=0.0 docker compose -f docker-compose.yml -f docker-compose-test-data.y
 All general settings are configured in the `ref-seeker-extractor/settings.yaml` file.
 
 
-We also provide a simple client to test the service. The client is implemented in Python and can be found in the `ref-seeker-extractor-client` directory.
+We also provide a simple client to test the service. The client is implemented in Go. The code can be found in the `ref-seeker-extractor-client` directory.
 
-Change to the client directory:
+
+To run the client using the provided docker image, execute the following command:
 ```bash
-cd ref-seeker-extractor-client
+docker run --rm \
+--network=schema-extraction-network \
+ghcr.io/dbishagen/ref-seeker-extractor-client:latest
 ```
 
-Create a virtual environment:
+To change the configuration like the database connection, you can mount the `conf` directory to the container:
+
 ```bash
-python -m venv venv
+docker run --rm \
+--network=schema-extraction-network \
+--mount type=bind,src=$(pwd)/conf,dst=/usr/local/ref-seeker-client/conf,readonly  \
+ghcr.io/dbishagen/ref-seeker-extractor-client:latest
 ```
 
-Activate the virtual environment:
+To clear the database containing the found inclusion dependencies, you can run the following command:
+
 ```bash
-source venv/bin/activate
+echo "DROP DATABASE IF EXISTS refseeker;CREATE DATABASE refseeker;" | \
+docker compose exec -T mariadb mariadb --user=root --password=refseeker
 ```
-
-Install the requirements:
-```bash
-pip install -r requirements.txt
-```
-
-To run the client, execute the following command:
-```bash
-python client.py -e -p
-```
-
-
 
 
 ## API-Docs
